@@ -1,4 +1,5 @@
 pyutils
 =======
 
-A lot of useful functions/modules. 
+看各类源码过程中收集到的好的函数/类/模块等
+
