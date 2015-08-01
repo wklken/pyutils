@@ -1,15 +1,13 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
-
-
-
 import sys
 from collections import MutableMapping
 
 py3k = sys.version_info > (3, 0, 0)
 
-# source : https://github.com/defnull/bottle/blob/master/bottle.py
+
+# source : https://github.com/bottlepy/bottle/blob/master/bottle.py
 class MultiDict(MutableMapping):
     """ This dict stores multiple values per key, but behaves exactly like a
         normal dict in that it returns only the newest value for any given key.
@@ -19,33 +17,63 @@ class MultiDict(MutableMapping):
     def __init__(self, *a, **k):
         self.dict = dict((k, [v]) for (k, v) in dict(*a, **k).items())
 
-    def __len__(self): return len(self.dict)
-    def __iter__(self): return iter(self.dict)
-    def __contains__(self, key): return key in self.dict
-    def __delitem__(self, key): del self.dict[key]
-    def __getitem__(self, key): return self.dict[key][-1]
-    def __setitem__(self, key, value): self.append(key, value)
-    def keys(self): return self.dict.keys()
+    def __len__(self):
+        return len(self.dict)
+
+    def __iter__(self):
+        return iter(self.dict)
+
+    def __contains__(self, key):
+        return key in self.dict
+
+    def __delitem__(self, key):
+        del self.dict[key]
+
+    def __getitem__(self, key):
+        return self.dict[key][-1]
+
+    def __setitem__(self, key, value):
+        self.append(key, value)
+
+    def keys(self):
+        return self.dict.keys()
 
     if py3k:
-        def values(self): return (v[-1] for v in self.dict.values())
-        def items(self): return ((k, v[-1]) for k, v in self.dict.items())
+
+        def values(self):
+            return (v[-1] for v in self.dict.values())
+
+        def items(self):
+            return ((k, v[-1]) for k, v in self.dict.items())
+
         def allitems(self):
             return ((k, v) for k, vl in self.dict.items() for v in vl)
+
         iterkeys = keys
         itervalues = values
         iteritems = items
         iterallitems = allitems
 
     else:
-        def values(self): return [v[-1] for v in self.dict.values()]
-        def items(self): return [(k, v[-1]) for k, v in self.dict.items()]
-        def iterkeys(self): return self.dict.iterkeys()
-        def itervalues(self): return (v[-1] for v in self.dict.itervalues())
+
+        def values(self):
+            return [v[-1] for v in self.dict.values()]
+
+        def items(self):
+            return [(k, v[-1]) for k, v in self.dict.items()]
+
+        def iterkeys(self):
+            return self.dict.iterkeys()
+
+        def itervalues(self):
+            return (v[-1] for v in self.dict.itervalues())
+
         def iteritems(self):
             return ((k, v[-1]) for k, v in self.dict.iteritems())
+
         def iterallitems(self):
             return ((k, v) for k, vl in self.dict.iteritems() for v in vl)
+
         def allitems(self):
             return [(k, v) for k, vl in self.dict.iteritems() for v in vl]
 
@@ -88,10 +116,8 @@ if __name__ == '__main__':
 
     d['bar'] = 3
 
-    print d.get('foo') # default last one
+    print d.get('foo')  # default last one
     print d.getall('foo')
 
     print d.items()
     print d.allitems()
-
-

@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
-
 import io
 import os
+
 
 # source: https://github.com/kennethreitz/requests/blob/master/requests/utils.py
 def super_len(o):
@@ -25,6 +25,7 @@ def super_len(o):
         # e.g. BytesIO, cStringIO.StringIO
         return len(o.getvalue())
 
+
 if __name__ == '__main__':
     print super_len("abcde")
-    print super_len([1,2,3])
+    print super_len([1, 2, 3])
