@@ -9,12 +9,14 @@ pyutils
 * [requests](https://github.com/kennethreitz/requests) [DONE]
 * [Python-Snippets](http://snippets.readthedocs.org/en/latest/index.html) [DONE]
 * [bottle](https://github.com/defnull/bottle)  [DONE]
+
+Doing
+
 * [Flask]()
 * [Django]()
 * [Werkzeug]()
 * [webpy]()
-* [webpy]()
 
 TODO:
 
-    如何优雅地处理const, 管理一个项目的常量
+    1. 如何优雅地处理const, 管理一个项目的常量
